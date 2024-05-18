@@ -1,0 +1,8 @@
+Pillow==10.1.0
+matplotlib==3.8.2
+sentinelhub==3.5.1
+mysql-connector-python==8.2.0
+pywavelets==1.4.1
+rasterio==1.2.10
+numpy==1.22.4
+json==2.0.9

@@ -1,0 +1,56 @@
+version: '3.3'
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: PASSWORD
+      MYSQL_DATABASE: SATELLITE_DB
+      MYSQL_USER: USER
+      MYSQL_PASSWORD: PASSWORD
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql_db:/var/lib/mysql 
+      
+  collection_image:
+    build: ./collection/
+    container_name: collection_image
+    volumes:
+      - ./SATELLITE_IMAGE:/collection/image
+    depends_on:
+      - mysql
+    command: sh -c 'python collection_image.py && python push.py'
+
+  update_data:
+    build: ./update_data/
+    container_name: update_data
+    volumes:
+      - ./SATELLITE_IMAGE:/collection/image
+    depends_on:
+      - mysql
+    command: sh -c 'cron -f'
+
+  jupyter_notebook:
+    build: ./jupyter_notebook
+    container_name: jupyter_notebook
+    volumes:
+      - work:/home/jovyan/work
+      - ./SATELLITE_IMAGE:/collection/image
+    ports:
+      - 8888:8888
+    depends_on:
+      - mysql
+      - collection_image
+    command: "start-notebook.sh --NotebookApp.token="
+
+volumes:
+  SATELLITE_IMAGE:
+  mysql_db:
+  work:
+    driver: local
+    driver_opts:
+      type: "none"
+      o: "bind"
+      device: "./work"
