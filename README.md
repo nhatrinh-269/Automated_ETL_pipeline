@@ -26,3 +26,29 @@ The Automated ETL Pipeline system is built to automate the process of collecting
 
 With the Automated Satellite Image ETL Pipeline, we aim to provide an efficient and flexible solution for managing multispectral satellite images in projects related to geographic and environmental data.
 
+
+## Project Structure
+```
+.
+├── SATELLITE_IMAGE
+│   ├── multispectral_satellite_images.tiff
+│   └── log.txt
+├── Collection
+│   ├── Dockerfile
+│   ├── requirements.txt
+│   ├── collection_image.py
+│   ├── create_table.py
+│   └── push.py
+├── update_data
+│   ├── Dockerfile
+│   ├── requirements.txt
+│   ├── update_data.py
+│   └── push.py
+├── jupyter_notebook
+│   ├── Dockerfile
+│   └── requirements.txt
+├── work
+│   └── Example.ipynb
+├── docker-compose.yml
+└── README.md
+```
