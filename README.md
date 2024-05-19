@@ -20,8 +20,8 @@
 With the Automated Satellite Image ETL Pipeline, we aim to provide an efficient and flexible solution for managing multispectral satellite images in projects related to geographic and environmental data.
 
 ## System Requirements
-- **Docker 25.0.5**
-- **Docker-compose 2.27.0**
+- **Docker 25.0.5** [here](https://docs.docker.com/get-docker/).
+- **Docker-compose 2.27.0** [here]( https://docs.docker.com/compose/install/).
 ## Required Skills
 - **Python**
 - **Docker**
@@ -36,7 +36,7 @@ With the Automated Satellite Image ETL Pipeline, we aim to provide an efficient 
 ├── SATELLITE_IMAGE
 │   ├── multispectral_satellite_images.tiff
 │   └── log.txt
-├── Collection
+├── collection
 │   ├── Dockerfile
 │   ├── requirements.txt
 │   ├── collection_image.py
@@ -55,4 +55,58 @@ With the Automated Satellite Image ETL Pipeline, we aim to provide an efficient 
 ├── docker-compose.yml
 └── README.md
 ```
-giải thích dưới đây
+### **Explanation**
+
+The project is organized into multiple folders and files, each serving a specific purpose in the ETL process and its automation:
+
+- **SATELLITE_IMAGE/**: Contains collected multispectral satellite images and log files to track activities.
+    - `multispectral_stellite_images.tiff`: satellite images.
+    - `log.txt`: Log file records details of data collection and updates.
+
+- **collection/**: Focuses on the initial data collection phase.
+    - `Dockerfile`: Instructions for building a Docker image for the collection service.
+    - `requirements.txt`: Required dependencies for the collection service.
+    - `collection_image.py`: Script to collect images from the Sentinel Hub API.
+    - `create_table.py`: Script to create necessary tables in MySQL database.
+    - `push.py`: Script to push collected data into the database.
+
+- **update_data/**: Handles automatic data updates at specified intervals.
+    - `Dockerfile`: Instructions for building Docker images for the automatic update service.
+    - `requirements.txt`: Required dependencies for the update service.
+    - `update_data.py`: Script to update new satellite images after a period of time.
+    - `push.py`: Script that pushes updated data to the database.
+
+- **jupyter_notebook/**: Provides an environment for analysis and testing.
+    - `Dockerfile`: Instructions for building Docker images for the Jupyter Notebook service.
+    - `requirements.txt`: Dependencies are required to run Jupyter Notebook.
+
+- **work/**: Directory containing work files.
+    - `Example.ipynb`: A Jupyter Notebook example that illustrates how to use the data.
+
+- **docker-compose.yml**: Configuration file to orchestrate multiple Docker containers needed for the project.
+
+- **README.md**: Provides general information and instructions for setting up and using the project.
+
+  
+### **Sentinel Hub OAuth Credentials**
+
+To access the Sentinel Hub API, you need to set up your OAuth credentials. Follow these steps to configure your client ID and client secret:
+
+1. **Obtain OAuth Credentials:**
+   - Register on the [Sentinel Hub](https://www.sentinel-hub.com/) platform.
+   - Create a new OAuth client in your Sentinel Hub dashboard.
+   - Note down your client ID and client secret.
+
+2. **Reference the Environment Variables in Your Code:**
+   - Ensure your scripts reference these environment variables when making API calls. For example, in `collection_image.py`:
+     ```python
+     from sentinelhub import SHConfig
+
+     config = SHConfig()
+     config.sh_client_id = client_id  # Set OAuth client ID
+     config.sh_client_secret = client_secret  # Set OAuth client secret
+
+     # Use the config object in your API requests
+     ```
+
+By following these steps, you'll ensure that your application can authenticate and access the Sentinel Hub API using your OAuth credentials.
