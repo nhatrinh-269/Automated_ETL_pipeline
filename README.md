@@ -52,7 +52,7 @@ With the Automated Satellite Image ETL Pipeline, we aim to provide an efficient 
   docker-compose exec -it id_container bash
   ```
   
-- **MySQL Images:**
+- **MySQL:**
   ```bash
   docker-compose exec -it id_container mysql -uroot - p
   ```
@@ -139,13 +139,14 @@ To access the Sentinel Hub API, you need to set up your OAuth credentials. Follo
      ```
 
 By following these steps, you'll ensure that your application can authenticate and access the Sentinel Hub API using your OAuth credentials.
-
-## Potential
+## Summary
+By building an automated process, we hope to reduce the time and effort in managing the collection, processing, and updating of multispectral satellite images. Helps researchers easily exploit and use them to build machine learning models.
+### **Potential**
 1. **Cloud Deployment:** This project would be better deployed in the cloud to ensure Docker is always running.
 2. **New Application Development:** The project provides a flexible platform to develop new applications based on multispectral satellite data.
 3. **Research and Learning:** The project can be used as a resource and platform for research and learning activities in the fields of data science, artificial intelligence, and data processing. image management.
 
-## Limitations of a project
+### **Limitations**
 1. **Internet Connection:** Persistent Internet connection is required to fetch satellite images from Sentinel Hub API. Interruptions in internet access may disrupt data collection.
 2. **Resource consumption:** Because satellite images collected over time series and in many different locations will create huge data. Therefore, applying a distributed data structure can further improve the storage and access process.
 3. **Search tool:** In this project, the part to search an image by coordinates has not been built yet. To fix this, users can use a hash function to define each key of the image. Thereby improving the speed of searching images in the database.
