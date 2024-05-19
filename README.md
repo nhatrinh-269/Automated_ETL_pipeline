@@ -12,7 +12,8 @@
 
 - **Centralized Storage:** We have built a **MySQL** database to **store** multispectral satellite image data.
 
-- **Automatic Updates:** Data is **automatically updated** at specified intervals to ensure that the system maintains the latest data.
+- **Automatic Updates:** Data is **updated automatically** at specified intervals using **Cron jobs** in **Docker containers**, data updates happen automatically and regularly, keeping the system in sync with **the latest satellite images**.
+
 
 ### **Deployment on Docker:** 
 - This project is deployed on **Docker** to enhance the automation of the Pipeline and reduce dependency on the environment.
@@ -21,7 +22,7 @@ With the Automated Satellite Image ETL Pipeline, we aim to provide an efficient 
 
 ## System Requirements
 - **Docker 25.0.5** [here](https://docs.docker.com/get-docker/).
-- **Docker-compose 2.27.0** [here]( https://docs.docker.com/compose/install/).
+- **Docker-compose 2.27.0** [here]( https://docs.docker.com/compose/).
 ## Required Skills
 - **Python**
 - **Docker**
@@ -29,7 +30,35 @@ With the Automated Satellite Image ETL Pipeline, we aim to provide an efficient 
 - **Discrete Wavelet Transform**
 - **ETL**
 - **Pipeline**
+
+## Installation Instructions
+1. **Install Docker and Docker Compose:**
+   - Download and install Docker from [here]( https://docs.docker.com/compose/install/).
+   - Download and install Docker Compose from [here](https://docs.docker.com/compose/install/).
+
+2. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/Trinh1410/Automated_ETL_pipeline
+   cd Automated_ETL_pipeline
+   ```
+
+### Usage Instructions
+- **Build and Run Docker Compose:**
+   ```bash
+   docker-compose up --build
+   ```
+- **Manage Containers:**
+  ```bash
+  docker-compose exec -it id_container bash
+  ```
   
+- **MySQL Images:**
+  ```bash
+  docker-compose exec -it id_container mysql -uroot - p
+  ```
+- **Accessing Jupyter Notebook:**
+   - Visiting `http://<hostname>:port/?token=<token>` in a browser loads JupyterLab.
+
 ## Project Structure
 ```
 .
