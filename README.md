@@ -38,7 +38,7 @@ With the Automated Satellite Image ETL Pipeline, we aim to provide an efficient 
 
 2. **Clone the Repository:**
    ```bash
-   git clone https://github.com/Trinh1410/Automated_ETL_pipeline
+   git clone https://github.com/nhatrinh-269/Automated_ETL_pipeline
    cd Automated_ETL_pipeline
    ```
 
